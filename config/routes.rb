@@ -3,7 +3,7 @@ SampleApp::Application.routes.draw do
   
     
   match '/signup',  :to => 'users#new'
-
+  match '/list', :to => 'users#index'
   match '/contact', :to => 'pages#contact'
   match '/about',   :to => 'pages#about'
   match '/help',    :to => 'pages#help'
