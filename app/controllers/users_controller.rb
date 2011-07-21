@@ -34,10 +34,11 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(params[:user])
-    
     respond_to do |format|
     if @user.save
-      format.html { redirect_to(@user, :notice => 'Welcome') }
+      sign_in @user
+      flash[:success] = "Welcome"
+      format.html { redirect_to(@user) }
         format.xml  { render :xml => @user, :status => :created, :location => @user }
     else
       @title = "Sign up"
@@ -45,7 +46,7 @@ class UsersController < ApplicationController
         format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
     end
     end
-    end
+end
 
 def update
     @user = User.find(params[:id])
